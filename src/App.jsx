@@ -1,8 +1,10 @@
 import React from 'react'
 
+import MainLayout from './components/layout/MainLayout/MainLayout'
+
 const App = () => {
   return (
-    <div>App</div>
+    <MainLayout/>
   )
 }
 
