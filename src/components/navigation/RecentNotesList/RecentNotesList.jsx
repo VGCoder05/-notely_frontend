@@ -1,5 +1,5 @@
 import React from "react";
-import { useRecentNotesList } from "./RecentNotesList.logic";
+import useRecentNotesList from "./RecentNotesList.logic";
 
 const RecentNotesList = () => {
   const { recentNotes, handleNoteClick } = useRecentNotesList();
@@ -26,7 +26,8 @@ const RecentNotesList = () => {
             text-left
             whitespace-nowrap overflow-hidden text-ellipsis
             hover:bg-[var(--color-surface-soft)]
-            transition-colors duration-150
+            transition-colors duration-150.
+            cursor-pointer
           "
         >
           {note.title || "Untitled"}

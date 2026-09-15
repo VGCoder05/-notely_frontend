@@ -2,9 +2,11 @@ import React from "react";
 import useSidebar from "../../hooks/useSidebar";
 
 const MobileOverlay = () => {
-  const { sidebarOpen, closeSidebar } = useSidebar();
+  const { sidebarState, closeSidebar } = useSidebar();
+  // console.log("sidebarState: ", sidebarState);
+  // console.log("MobileOverlay");
 
-  if (!sidebarOpen) return null;
+  if (!sidebarState) return null;
 
   return (
     <div

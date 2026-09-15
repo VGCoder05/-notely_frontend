@@ -20,19 +20,19 @@ const useSidebar = () => {
   const isMobile = useMediaQuery("(max-width: 768px)");
 
   const handleOpen = () => {
-    dispatch(openSidebar);
+    dispatch(openSidebar());
   };
   const handleClose = () => {
-    dispatch(closeSidebar);
+    dispatch(closeSidebar());
   };
   const handleToggle = () => {
-    dispatch(toggleSidebar);
+    dispatch(toggleSidebar());
   };
 
   // close the sidebar when the route in url is changed
   useEffect(() => {
     if (isMobile && sidebarState) {
-      dispatch(closeSidebar);
+      dispatch(closeSidebar());
     }
   }, [window.location.hash]);
 

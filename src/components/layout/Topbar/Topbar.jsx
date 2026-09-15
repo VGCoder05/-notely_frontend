@@ -27,7 +27,7 @@ const Topbar = () => {
         icon={Menu}
         onClick={handleOpenSidebar}
         label="Open navigation"
-        className="md:hidden"
+        className="md:hidden z-[99]"
       />
 
       {/* Breadcrumb */}

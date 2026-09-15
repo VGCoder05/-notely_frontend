@@ -1,10 +1,15 @@
 import React from 'react'
 import useSidebar from '../../../hooks/useSidebar'
 import { useNavigate } from 'react-router';
+import { useSelector } from 'react-redux';
 
 
 const SidebarLogic = () => {
   const {openSidebar, closeSidebar, toggleSidebar} = useSidebar();
+  const { sidebarOpen, noteCount } = useSelector((state) => ({
+      sidebarOpen: state.ui.sidebarOpen,
+      noteCount: state.notes.notes.length,
+    }))
   const navigate =useNavigate()
 
   // Handle navigation - pass the route 
@@ -13,6 +18,11 @@ const SidebarLogic = () => {
   }
   
   return {
+    // Variable
+    sidebarOpen,
+    noteCount,
+
+    // Dispatch Functions 
     openSidebar,
     closeSidebar,
     toggleSidebar,

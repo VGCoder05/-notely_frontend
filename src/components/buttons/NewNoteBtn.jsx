@@ -10,10 +10,11 @@ const NewNoteButton = () => {
     const handleKeyDown = (e) => {
       // Check if 'N' key is pressed (not in an input/textarea)
       if (
-        e.key === "/" &&
-        e.ctrlKey &&
+        e.key === "N" &&
+        !e.ctrlKey &&
         !e.metaKey &&
         !e.altKey &&
+        e.shiftKey &&
         !["INPUT", "TEXTAREA"].includes(document.activeElement.tagName)
       ) {
         handleCreateNote();
@@ -62,7 +63,7 @@ const NewNoteButton = () => {
         bg-[rgba(255,255,255,0.12)]
       "
       >
-        Ctrl + /
+        Shift + N
       </kbd>
     </button>
   );

@@ -1,27 +1,52 @@
-import React from 'react';
+import { React, useEffect } from "react";
 import useSidebarLogic from "./Sidebar.logic";
-// import Brand from '../../navigation/Brand/Brand';
-import NewNoteBtn from '../../buttons/NewNoteBtn';
+import Brand from "../../navigation/Brand";
+import NewNoteBtn from "../../buttons/NewNoteBtn";
 // import NavLink from '../../navigation/NavLink/NavLink';
-// import RecentNotesList from '../../navigation/RecentNotesList/RecentNotesList';
+import RecentNotesList from "../../navigation/RecentNotesList/RecentNotesList";
 // import ProfileButton from '../../navigation/ProfileButton/ProfileButton';
-import IconBtn from '../../buttons/IconBtn';
-import { 
-  Inbox, 
-  Search, 
-  Star, 
-  Trash2, 
-  Settings,
-  X 
-} from 'lucide-react';
-import { NavLink } from 'react-router';
+import IconBtn from "../../buttons/IconBtn";
+import { Inbox, Search, Star, Trash2, Settings, X } from "lucide-react";
+import { NavLink } from "react-router";
+import { useSelector } from "react-redux";
 
 const Sidebar = () => {
-  const { 
-    sidebarOpen, 
-    noteCount, 
-    handleCloseSidebar, 
+  const {
+    sidebarOpen,
+    noteCount,
+    openSidebar,
+    closeSidebar,
+    toggleSidebar,
+    handleNavigation,
   } = useSidebarLogic();
+
+  // const { sidebarOpen, noteCount } = useSelector((state) => ({
+  //   sidebarOpen: state.ui.sidebarOpen,
+  //   noteCount: state.notes.notes.length,
+  // }));
+  // console.log(sidebarOpen, noteCount);
+  // console.log("Sidebar");
+
+  // Keyboard shortcut
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      // console.log(e);
+
+      if (
+        e.key === "/" &&
+        e.ctrlKey &&
+        !e.metaKey &&
+        !e.altKey &&
+        !e.shiftKey
+        // !["INPUT", "TEXTAREA"].includes(document.activeElement.tagName)
+      ) {
+        toggleSidebar();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [toggleSidebar]);
 
   return (
     <>
@@ -32,20 +57,43 @@ const Sidebar = () => {
           border-r border-[var(--color-border-primary)]
           flex flex-col p-4 px-3
           transition-transform duration-200 ease-in-out
-          ${sidebarOpen ? 'translate-x-0 shadow-[var(--shadow-sidebar)]' : '-translate-x-full'}
+          ${
+            sidebarOpen
+              ? "translate-x-0 shadow-[var(--shadow-sidebar)]"
+              : "-translate-x-full transition-all duration-100"
+          }
           md:translate-x-0 md:shadow-none
         `}
         aria-label="Primary navigation"
       >
         {/* Brand Section */}
-        <div className="flex items-center h-10 px-[6px]">
-          <IconBtn
-            icon={X}
-            onClick={handleCloseSidebar}
-            label="Close navigation"
-            className="md:hidden ml-auto"
-          />
-          {/* <Brand /> */}
+        <div className="w-full flex justify-between h-10 px-[6px]">
+          <Brand />
+          <div className="flex flex-col">           
+
+            <IconBtn
+              icon={X}
+              onClick={closeSidebar}
+              label="Close navigation"
+              className="md:hidden ml-auto z-[99]"
+            />
+
+            <kbd
+              className="
+              ml-auto
+              text-[11px]
+              border border-accent-blue
+              border-b-2
+              rounded-[5px]
+              px-[5px] py-[1px]
+              text-accent-blue
+              bg-gray-400
+              self-end
+            "
+            >
+              Ctrl + /
+            </kbd>
+          </div>
         </div>
 
         {/* New Note Button */}
@@ -66,16 +114,8 @@ const Sidebar = () => {
             shortcut="⌘K"
             isButton
           />
-          <NavLink
-            to="/favourites"
-            icon={Star}
-            label="Favourites"
-          />
-          <NavLink
-            to="/trash"
-            icon={Trash2}
-            label="Trash"
-          />
+          <NavLink to="/favourites" icon={Star} label="Favourites" />
+          <NavLink to="/trash" icon={Trash2} label="Trash" />
         </nav>
 
         {/* Divider */}
@@ -85,15 +125,11 @@ const Sidebar = () => {
         <div className="px-[10px] pb-2 text-[var(--color-text-muted)] text-[11px] font-semibold uppercase tracking-[0.08em]">
           Recent notes
         </div>
-        {/* <RecentNotesList /> */}
+        <RecentNotesList />
 
         {/* Footer */}
         <div className="mt-auto grid gap-1">
-          <NavLink
-            to="/settings"
-            icon={Settings}
-            label="Settings"
-          />
+          <NavLink to="/settings" icon={Settings} label="Settings" />
           {/* <ProfileButton /> */}
         </div>
       </aside>

@@ -30,7 +30,7 @@ export const useMainLayout = () => {
     return () => {
       document.body.style.overflow = "";
     };
-  }, [ sidebarOpen]);
+  }, [sidebarOpen]);
 
   return {
     sidebarOpen,
