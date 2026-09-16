@@ -13,21 +13,22 @@ const RecentNotesList = () => {
   }
 
   return (
-    <div className="grid gap-[2px] overflow-auto">
+    <div className="h-full min-h-0 flex flex-1 flex-col gap-[2px] overflow-y-auto custom-scrollbar">
       {recentNotes.map((note) => (
         <button
           key={note.id}
           onClick={() => handleNoteClick(note)}
           className="
-            block w-full
+             w-full
             px-[10px] py-2
             rounded-lg
             text-[var(--color-text-secondary)]
             text-left
             whitespace-nowrap overflow-hidden text-ellipsis
             hover:bg-[var(--color-surface-soft)]
-            transition-colors duration-150.
+            transition-colors duration-150
             cursor-pointer
+            shrink-0
           "
         >
           {note.title || "Untitled"}

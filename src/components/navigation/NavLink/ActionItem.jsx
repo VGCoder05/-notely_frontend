@@ -1,35 +1,3 @@
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { closeSidebar, openSearch } from '../../../store/slices/uiSlice';
-import { useMediaQuery } from '../../../hooks/useMediaQuery';
-
-export const useNavLink = (to, isButton, onButtonClick) => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const isMobile = useMediaQuery('(max-width: 768px)');
-
-  const handleClick = (e) => {
-    if (isButton) {
-      e.preventDefault();
-      if (onButtonClick) {
-        onButtonClick();
-      } else if (to === '/search') {
-        dispatch(openSearch());
-      }
-    } else {
-      navigate(to);
-      if (isMobile) {
-        dispatch(closeSidebar());
-      }
-    }
-  };
-
-  return { handleClick };
-};
-
-
-// ------------------------------
-
 import React from "react";
 import { useNavLink } from "./NavLink.logic";
 
@@ -64,15 +32,22 @@ const NavLink = ({
         }
       `}
     >
-      {Icon && <Icon className="w-[18px] h-[18px]" />}
-      <span className="flex-1">{label}</span>
+      {/* To display the Icon  */}
+      {Icon && (
+        <>
+          <Icon className="w-[18px] h-[18px]" />
+          <span className="flex-1">{label}</span>
+        </>
+      )}
 
+      {/* Especially for Displaying all notes */}
       {count !== undefined && (
         <span className="ml-auto text-[var(--color-text-muted)] text-[12px]">
           {count}
         </span>
       )}
 
+      {/* To show shortcut for respective btn or navlink */}
       {shortcut && (
         <kbd
           className="

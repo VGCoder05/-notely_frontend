@@ -29,8 +29,8 @@ const NewNoteButton = () => {
     <button
       onClick={handleCreateNote}
       className="
-        mt-[18px] mb-[14px] mx-1
-        w-[calc(100%-8px)]
+        my-[10px] py-[5px] mx-1
+        w-[calc(100%-5px)]
         h-[var(--size-new-note-btn)]
         border-0
         rounded-[10px]
@@ -54,11 +54,11 @@ const NewNoteButton = () => {
       <kbd
         className="
         ml-auto
-        text-[11px]
+        text-[10px]
         border border-accent-blue
         border-b-2
         rounded-[5px]
-        px-[5px] py-[1px]
+        px-[4px] py-[2px]
         text-accent-blue
         bg-[rgba(255,255,255,0.12)]
       "
