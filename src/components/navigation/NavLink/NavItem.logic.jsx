@@ -3,17 +3,17 @@ import { useDispatch } from 'react-redux';
 import { closeSidebar, openSearch } from '../../../store/slices/uiSlice';
 import useMediaQuery from '../../../hooks/useMediaQuery';
 
-export const useNavLink = (to, isButton, onButtonClick) => {
+export const useNavItem = (to, isButton, onButtonClick) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const isMobile = useMediaQuery('(max-width: 768px)');
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   const handleClick = (e) => {
     if (isButton) {
       e.preventDefault();
       if (onButtonClick) {
         onButtonClick();
-      } else if (to === '/search') {
+      } else if (to === "/search") {
         dispatch(openSearch());
       }
     } else {

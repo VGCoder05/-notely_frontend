@@ -2,7 +2,7 @@ import { React, useEffect } from "react";
 import useSidebarLogic from "./Sidebar.logic";
 import Brand from "../../navigation/Brand";
 import NewNoteBtn from "../../buttons/NewNoteBtn";
-import NavLink from "../../navigation/NavLink/NavItem";
+import NavItem from "../../navigation/NavLink/NavItem";
 import RecentNotesList from "../../navigation/RecentNotesList/RecentNotesList";
 // import ProfileButton from '../../navigation/ProfileButton/ProfileButton';
 import IconBtn from "../../buttons/IconBtn";
@@ -100,25 +100,25 @@ const Sidebar = () => {
 
         {/* Main Navigation */}
         <nav className="grid gap-[3px]" aria-label="Workspace">
-          <NavLink
+          <NavItem
             to="/dashboard"
             icon={Inbox}
             label="All notes"
             count={noteCount}
           />
-          <NavLink
+          <NavItem
             to="/search"
             icon={Search}
             label="Search"
             shortcut="⌘K"
             isButton
           />
-          <NavLink to="/favourites" icon={Star} label="Favourites" />
-          <NavLink to="/trash" icon={Trash2} label="Trash" />
+          <NavItem to="/favourites" icon={Star} label="Favourites" />
+          <NavItem to="/trash" icon={Trash2} label="Trash" />
         </nav>
 
         {/* Divider */}
-        <hr className="my-[4px] p-[.5px] border-0 bg-gray-300" />
+        <hr className="mt-[4px] mb-[10px] p-[.5px] border-0 bg-gray-300" />
         {/* <div className="h-px bg-[var(--color-border-primary)] my-[10px] mx-2" /> */}
 
         {/* Recent Notes Section */}
@@ -129,7 +129,7 @@ const Sidebar = () => {
 
         {/* Footer */}
         <div className="mt-auto grid gap-1">
-          <NavLink to="/settings" icon={Settings} label="Settings" />
+          <NavItem to="/settings" icon={Settings} label="Settings" />
           {/* <ProfileButton /> */}
         </div>
       </aside>

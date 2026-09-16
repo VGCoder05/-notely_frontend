@@ -13,7 +13,7 @@ const RecentNotesList = () => {
   }
 
   return (
-    <div className="h-full min-h-0 flex flex-1 flex-col gap-[2px] overflow-y-auto custom-scrollbar">
+    <div className="mt-[10px] h-full min-h-0 flex flex-1 flex-col gap-[2px] overflow-y-auto custom-scrollbar">
       {recentNotes.map((note) => (
         <button
           key={note.id}

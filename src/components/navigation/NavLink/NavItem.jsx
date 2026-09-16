@@ -1,22 +1,44 @@
 import { NavLink } from "react-router";
+import { useNavItem } from "./NavItem.logic";
 
-const NavItem = ({ to, icon: Icon, label, count, shortcut }) => {
+const NavItem = ({
+  to,
+  icon: Icon,
+  label,
+  count,
+  shortcut,
+  isButton = false,
+  onButtonClick,
+}) => {
+  const { handleClick } = useNavItem(to, isButton, onButtonClick);
+  const Component = isButton ? "button" : NavLink;
+
   return (
-    <NavLink
+    <Component
       to={to}
-      className={({ isActive }) => `
-        w-full min-h-[var(--size-nav-item)]
-        border-0 bg-transparent rounded-lg
-        flex items-center gap-[11px]
-        px-[10px]
-        text-left
-        transition-colors duration-150
-        ${
-          isActive
-            ? "bg-[var(--color-surface-active)] text-[var(--color-primary-500)] font-semibold"
-            : "text-[var(--color-text-secondary)] hover:bg-[var(--color-surface-soft)] hover:text-[var(--color-text-primary)]"
-        }
-      `}
+      onClick={handleClick}
+      className={
+        isButton
+          ? `w-full min-h-[var(--size-nav-item)]
+       border-0 rounded-lg
+       flex items-center gap-[11px]
+       px-[10px] text-left
+       transition-colors duration-150
+       text-[var(--color-text-secondary)]
+       hover:bg-[var(--color-surface-soft)]
+       hover:text-[var(--color-text-primary)]`
+
+          : ({ isActive }) => `
+       w-full min-h-[var(--size-nav-item)]
+       border-0 rounded-lg
+       flex items-center gap-[11px]
+       px-[10px] text-left
+       transition-colors duration-150
+       ${isActive
+              ? "bg-[var(--color-surface-active)] text-[var(--color-primary-500)] font-semibold"
+              : "text-[var(--color-text-secondary)] hover:bg-[var(--color-surface-soft)] hover:text-[var(--color-text-primary)]"
+            }`
+      }
     >
       {/* To display the Icon  */}
       {Icon && (
@@ -49,7 +71,7 @@ const NavItem = ({ to, icon: Icon, label, count, shortcut }) => {
           {shortcut}
         </kbd>
       )}
-    </NavLink>
+    </Component>
   );
 };
 
