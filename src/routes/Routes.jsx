@@ -1,10 +1,11 @@
 import React from 'react'
 import {Routes, Route} from "react-router"
+import DashboardView from '../pages/DashboardView/DashboardView'
 
-const Routes = () => {
+const RoutesProvider = () => {
   return (
     <Routes>
-        {/* <Route path='/dashboard' element={}/> */}
+        <Route path='/dashboard' element={<DashboardView/>}/>
         {/* <Route path='/search' element={}/> */}
         {/* <Route path='/favourites' element={}/> */}
         {/* <Route path='/trash' element={}/> */}
@@ -14,4 +15,4 @@ const Routes = () => {
   )
 }
 
-export default Routes
+export default RoutesProvider;
