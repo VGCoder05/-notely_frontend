@@ -13,7 +13,7 @@ import { useSearchBox } from "../../components/forms/SearchBox/SearchBox.logic";
 const DashboardView = () => {
   const navigate = useNavigate();
   const { notes, loading, error, handleRetry } = useDashboardView();
-  const{result} = useSearchBox(notes);
+  const { searchTerm, handleChange, handleClear, result } = useSearchBox(notes);
 
   const handleNewNote = () => {
     navigate("/note/new");
@@ -73,6 +73,9 @@ const DashboardView = () => {
           data={notes}
           placeholder="Search notes..."
           className="flex-1"
+          searchTerm={searchTerm}
+          handleChange={handleChange}
+          handleClear={handleClear}
         />
       </div>
 

@@ -7,11 +7,11 @@ const SearchBox = ({
   placeholder = "Notes Title...",
   debounceMs = 300,
   className = "",
+  searchTerm,
+  handleChange,
+  handleClear,
 }) => {
-  const { searchTerm, handleChange, handleClear } = useSearchBox(
-    data,
-    debounceMs
-  );
+
 
   return (
     <div className={`relative flex-1 ${className}`}>

@@ -1,14 +1,23 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 
 export const useSearchBox = (data, debounceMs = 300) => {
-  const [searchTerm, setSearchTerm] = useState("");  // to track the value to be search 
+  const [searchTerm, setSearchTerm] = useState(""); // to track the value to be search
   const [debounceTimeout, setDebounceTimeout] = useState(null);
-  const [result, setResult] = useState(data)
+  const [result, setResult] = useState(data);
+
+  // To Sync "data" when data change anywhere
+  useEffect(() => {
+    setResult(data);
+  }, [data]);
 
   const handleSearch = useCallback(
     (query) => {
       // Search is handled by SearchModal (⌘K)
-      setResult(data.filter((note) => note.title.includes(query)));
+      setResult(
+        data.filter((note) =>
+          note.title.toLowerCase().includes(query.toLowerCase())
+        )
+      );
       // console.log(result)
     },
     [data]
@@ -44,8 +53,6 @@ export const useSearchBox = (data, debounceMs = 300) => {
       handleSearch("");
     }
   }, [handleSearch]);
-
-  
 
   return {
     searchTerm,

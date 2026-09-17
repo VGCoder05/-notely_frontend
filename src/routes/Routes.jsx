@@ -5,6 +5,7 @@ import DashboardView from '../pages/DashboardView/DashboardView'
 const RoutesProvider = () => {
   return (
     <Routes>
+        <Route path='/' element={<DashboardView/>}/>
         <Route path='/dashboard' element={<DashboardView/>}/>
         {/* <Route path='/search' element={}/> */}
         {/* <Route path='/favourites' element={}/> */}
