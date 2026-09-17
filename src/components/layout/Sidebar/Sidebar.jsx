@@ -44,6 +44,8 @@ const Sidebar = () => {
       }
     };
 
+    
+
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [toggleSidebar]);
@@ -55,7 +57,7 @@ const Sidebar = () => {
           fixed top-0 left-0 bottom-0 z-[var(--z-index-sidebar)]
           w-[var(--sidebar-width)] bg-[var(--color-surface-primary)]
           border-r border-[var(--color-border-primary)]
-          flex flex-col p-4 px-3  h-full
+          flex flex-col p-4 px-3  min-h-screen max-h-screen
           transition-transform duration-200 ease-in-out
           ${
             sidebarOpen

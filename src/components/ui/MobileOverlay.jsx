@@ -13,6 +13,7 @@ const MobileOverlay = () => {
       onClick={closeSidebar}
       className="
         fixed inset-0
+        min-h-screen max-h-screen
         bg-[var(--color-overlay-light)]
         z-[var(--z-index-mobile-overlay)]
         md:hidden
