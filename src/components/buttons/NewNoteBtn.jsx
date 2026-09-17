@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useNewNoteButton } from "./NewNoteBtn.logic";
+import { useNewNoteButton } from "./NewNotebtn.logic";
 import { Plus } from "lucide-react";
 
 const NewNoteButton = () => {
