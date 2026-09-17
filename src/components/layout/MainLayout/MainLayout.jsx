@@ -9,7 +9,7 @@ const MainLayout = ({ children }) => {
   const { sidebarOpen } = useMainLayout();
 
   return (
-    <div className={`min-h-[100%] ${sidebarOpen ? "sidebar-open" : ""}`}>
+    <div className={`min-h-[100%] max-h-[100vh] ${sidebarOpen ? "sidebar-open" : ""}`}>
       <Sidebar />
       <MobileOverlay />
 
